@@ -21,45 +21,58 @@ def replace_number(tokenized_list, logger=None):  # Tested [Y]
 
     return tokenized_list
 
+def combine_contractions(sentence, logger=None):
+    len_before = len(sentence)
+    for index in range(len_before):
+        if sentence[index] in ["n't", "'m", "'ll"]:
+            sentence[index - 1] += sentence[index]
+            sentence.pop(index)
+    logger.info("Combining contractions. Length of document before: {}. "
+                "Length of document after: {}".format(len_before, len(sentence)))
+
+    return sentence
+
 
 def preprocess_tokens(sentence,
-                     remove_stop_words=True,
-                     remove_punctuation=True, tag_numbers=False, lower_case=True,
-                     stop_words_list=stopwords.words('english'), logger=None):
+                      remove_stop_words=True,
+                      remove_punctuation=True, tag_numbers=False, lower_case=True,
+                      stop_words_list=stopwords.words('english'), logger=None):
+    """
+    Performs additional preprocessing steps on the already tokenized documents.
 
-   """
+    Args:
+        sentence (list): A list of strings where elements are the tokens from your document.
+        remove_stop_words (bool):
+        remove_punctuation (bool):
+        tag_numbers (bool):
+        lower_case (bool):
+        stop_words_list (bool):
+        logger (Logger):
 
-   Performs additional preprocessing steps on the already tokenized documents.
-   Args:
+    Returns:
 
-       sentence (list): A list of strings where elements are the tokens from your document.
-       remove_stop_words (bool):
-       remove_punctuation (bool):
-       tag_numbers (bool):
-       lower_case (bool):
-       stop_words_list (bool):
-       logger (Logger):
+    """
+    sentence = combine_contractions(sentence, logger=logger)
 
-   Returns:
-   """
+    if lower_case:
+        if logger:
+            logger.info("Turning all tokens to lower-case")
+        sentence = [i.lower() for i in sentence]
 
-   if lower_case:
+    if remove_stop_words:
+        len_before = len(sentence)
+        sentence = [i for i in sentence if i not in stop_words_list]
+        if logger:
+            logger.info("Removed stopwords. Length of document before: {}. Length of document after: {}".format(len_before, len(sentence)))
 
-       logger.info("Turning all tokens to lower-case")
-       sentence = [i.lower for i in sentence]
+    if remove_punctuation:
+        len_before = len(sentence)
+        sentence = [i for i in sentence if i not in ['...'] + list(string.punctuation)]
+        if logger:
+            logger.info("Removed punctuation. Length of document before: {}. Length of document after: {}".format(len_before, len(sentence)))
 
+    if tag_numbers:
+        sentence = replace_number(sentence)
 
-   if remove_stop_words:
+    return sentence
 
-       len_before = len(sentence)
-       sentence = [i for i in sentence if i not in stop_words_list]
-       logger.info("Removed stopwords. Length of document before: {}. Length of document after: {}".format(len_before, len(sentence)))
-
-   if remove_punctuation:
-
-       len_before = len(sentence)
-       sentence = [i for i in sentence if i not in ['...'] + list(string.punctuation)]
-       logger.info("Removed punctuation. Length of document before: {}. Length of document after: {}".format(len_before, len(sentence)))
-
-   if tag_numbers:
-       sentence = replace_number(sentence)
