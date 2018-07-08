@@ -28,7 +28,7 @@ def replace_number(tokenized_list, logger=None):  # Tested [Y]
 
         # handle digit attaches to a string
         if len(re.split(digits, tokenized_list[i])) != 1:  # Branch B
-            tokenized_list[i] = re.sub('\d+', '', tokenized_list[i])
+            tokenized_list[i] = re.findall(r"\w+", re.sub('\d+', '', tokenized_list[i]))[0]
 
     return tokenized_list
 
@@ -46,7 +46,7 @@ def combine_contractions(sentence, logger=None):
 
 def preprocess_tokens(sentence,
                       remove_stop_words=True,
-                      remove_punctuation=True, tag_numbers=False, lower_case=True,
+                      remove_punctuation=True, tag_numbers=True, lower_case=True,
                       stop_words_list=stopwords.words('english'), logger=None):
     """
     Performs additional preprocessing steps on the already tokenized documents.
