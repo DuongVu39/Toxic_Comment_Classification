@@ -1,6 +1,7 @@
 # Util libraries
-import string
 import re
+import string
+import logging
 
 # Data libraries:
 
@@ -37,11 +38,11 @@ def combine_contractions(sentence, logger=None):
         if sentence[index] in ["n't", "'m", "'ll"]:
             sentence[index - 1] += sentence[index]
             sentence.pop(index)
-    logger.info("Combining contractions. Length of document before: {}. "
+    if logger:
+        logger.info("Combining contractions. Length of document before: {}. "
                 "Length of document after: {}".format(len_before, len(sentence)))
 
     return sentence
-
 
 def preprocess_tokens(sentence,
                       remove_stop_words=True,
