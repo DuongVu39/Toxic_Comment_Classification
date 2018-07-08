@@ -1,3 +1,12 @@
+# Util libraries
+import string
+
+# Data libraries:
+
+# NLP libraries
+from nltk.corpus import stopwords
+
+
 def replace_number(tokenized_list, logger=None):  # Tested [Y]
     """
     Delete all number after tokenize
