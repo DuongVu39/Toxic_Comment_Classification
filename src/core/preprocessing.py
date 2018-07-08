@@ -1,5 +1,6 @@
 # Util libraries
 import string
+import re
 
 # Data libraries:
 
@@ -81,7 +82,11 @@ def preprocess_tokens(sentence,
             logger.info("Removed punctuation. Length of document before: {}. Length of document after: {}".format(len_before, len(sentence)))
 
     if tag_numbers:
+        len_before = len(sentence)
         sentence = replace_number(sentence)
+        if logger:
+            logger.info("Converting numbers to a tag. Length of document before: {}. "
+                        "Length of document after: {}".format(len_before, len(sentence)))
 
     return sentence
 
