@@ -32,6 +32,7 @@ def replace_number(tokenized_list, logger=None):  # Tested [Y]
 
     return tokenized_list
 
+
 def combine_contractions(sentence, logger=None):
     len_before = len(sentence)
     for index in range(len_before):
@@ -43,6 +44,7 @@ def combine_contractions(sentence, logger=None):
                 "Length of document after: {}".format(len_before, len(sentence)))
 
     return sentence
+
 
 def preprocess_tokens(sentence,
                       remove_stop_words=True,
