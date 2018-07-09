@@ -41,7 +41,7 @@ def combine_contractions(sentence, logger=None):
             sentence.pop(index)
     if logger:
         logger.info("Combining contractions. Length of document before: {}. "
-                "Length of document after: {}".format(len_before, len(sentence)))
+                    "Length of document after: {}".format(len_before, len(sentence)))
 
     return sentence
 
