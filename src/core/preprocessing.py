@@ -9,11 +9,11 @@ import logging
 from nltk.corpus import stopwords
 
 
-def replace_number(tokenized_list, logger=None):  # Tested [Y]
+def replace_number(sentence, logger=None):  # Tested [Y]
     """
     Delete all number after tokenize
     Args:
-        tokenized_list(list): A list of tokenized word
+        sentence(list): A list of tokenized word
         logger (Logger)     : Logger object from the Logging package which has already been configured. If None, no logging
                              is performed.
 
@@ -22,15 +22,15 @@ def replace_number(tokenized_list, logger=None):  # Tested [Y]
     """
     digits = r"\d+"
 
-    for i in range(len(tokenized_list)):
-        if str(tokenized_list[i]).isdigit():  # Branch A
-            tokenized_list.pop(i)
+    for i in range(len(sentence)):
+        if str(sentence[i]).isdigit():  # Branch A
+            sentence.pop(i)
 
         # handle digit attaches to a string
-        if len(re.split(digits, tokenized_list[i])) != 1:  # Branch B
-            tokenized_list[i] = re.findall(r"\w+", re.sub('\d+', '', tokenized_list[i]))[0]
+        if len(re.split(digits, sentence[i])) != 1:  # Branch B
+            sentence[i] = re.findall(r"\w+", re.sub('\d+', '', sentence[i]))[0]
 
-    return tokenized_list
+    return sentence
 
 
 def combine_contractions(sentence, logger=None):
@@ -63,6 +63,7 @@ def preprocess_tokens(sentence,
         logger (Logger):
 
     Returns:
+        Tokenized documents after preprocessing
 
     """
     sentence = combine_contractions(sentence, logger=logger)
@@ -93,3 +94,19 @@ def preprocess_tokens(sentence,
 
     return sentence
 
+def padding(sentence, logger=None)
+    """
+    Performs padding on the already tokenized documents
+
+    Args:
+        sentence (list): A list of strings where elements are the tokens from your document.
+        logger (Logger):
+
+    Returns:
+        A list of strings where elements are all at equal length
+
+    """
+    max_length = 0
+    for i in sentence:
+        if i > max_length:
+            max_length = i
