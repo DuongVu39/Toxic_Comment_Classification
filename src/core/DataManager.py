@@ -1,5 +1,6 @@
 # Utility Libraries
 import time
+from src.core.preprocessing import padding
 
 # Data libraries
 import pandas as pd
@@ -38,4 +39,7 @@ class DataManager(object):
                 self.logger.info("Tokenizing all test documents took {}s".format(time.time() - st))
 
     def _pad_sentences(self):
-        self.train
+        self.train['tokenized'] = padding(self.train['tokenized'])
+        if isinstance(self.test, pd.DataFrame):
+            self.test['tokenized'] = padding(self.test['tokenized'])
+
