@@ -106,7 +106,10 @@ def padding(sentence, logger=None)
         A list of strings where elements are all at equal length
 
     """
-    max_length = 0
+
+    new_list = sorted(sentence, key=len)
+    max_length = len(new_list[-1])
     for i in sentence:
-        if i > max_length:
-            max_length = i
+        i.extend(("<PAD>",) * (max_length - i))
+
+    return sentence
