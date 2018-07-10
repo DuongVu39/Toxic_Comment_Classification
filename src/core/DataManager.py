@@ -18,7 +18,8 @@ class DataManager(object):
     def __init__(self, path, logging_level=3, logging_path="logs/data_manager{}.txt".format(time.time()), train_only=False):
         self.train = pd.read_csv(path + "/train.csv")
         self.test = pd.read_csv(path + "/train.csv") if not train_only else False
-        self.id_dict = self.dat[['id', 'comment_text']].set_index('id').to_dict()
+        self.train_id_dict = self.train[['id', 'comment_text']].set_index('id').to_dict()
+        self.test_id_dict = self.test[['id', 'comment_text']].set_index('id').to_dict()
         self.logger = logging_wrapper(logging_level, logging_path)
 
     def tokenize(self):
