@@ -94,12 +94,12 @@ def preprocess_tokens(sentence,
 
     return sentence
 
-def padding(sentence, logger=None)
+def padding(corpus, logger=None):
     """
     Performs padding on the already tokenized documents
 
     Args:
-        sentence (list): A list of strings where elements are the tokens from your document.
+        corpus (list): A list of strings where elements are the tokens from your document.
         logger (Logger):
 
     Returns:
@@ -107,9 +107,9 @@ def padding(sentence, logger=None)
 
     """
 
-    new_list = sorted(sentence, key=len)
+    new_list = sorted(corpus, key=len)
     max_length = len(new_list[-1])
-    for i in sentence:
-        i.extend(("<PAD>",) * (max_length - i))
+    for i in corpus:
+        i.extend(("<PAD>",) * (max_length - len(i)))
 
-    return sentence
+    return corpus

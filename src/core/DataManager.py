@@ -37,4 +37,5 @@ class DataManager(object):
                 self.test['tokenized'] = self.test['comment_text'].apply(tokenize.word_tokenize)
                 self.logger.info("Tokenizing all test documents took {}s".format(time.time() - st))
 
-
+    def _pad_sentences(self):
+        self.train
