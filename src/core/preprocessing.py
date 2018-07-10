@@ -13,8 +13,8 @@ def replace_number(sentence, logger=None):  # Tested [Y]
     """
     Delete all number after tokenize
     Args:
-        sentence(list): A list of tokenized word
-        logger (Logger)     : Logger object from the Logging package which has already been configured. If None, no logging
+        sentence(list)  : A list of tokenized word
+        logger (Logger) : Logger object from the Logging package which has already been configured. If None, no logging
                              is performed.
 
     Returns:
@@ -48,7 +48,7 @@ def combine_contractions(sentence, logger=None):
 
 def preprocess_tokens(sentence,
                       remove_stop_words=True,
-                      remove_punctuation=True, tag_numbers=True, lower_case=True,
+                      remove_punctuation=False, tag_numbers=True, lower_case=True,
                       stop_words_list=stopwords.words('english'), logger=None):
     """
     Performs additional preprocessing steps on the already tokenized documents.
@@ -56,7 +56,7 @@ def preprocess_tokens(sentence,
     Args:
         sentence (list): A list of strings where elements are the tokens from your document.
         remove_stop_words (bool):
-        remove_punctuation (bool):
+        remove_punctuation (bool): Choose to remove punctuation or not. It seems like people with aggressive comment would use a lot more punctuation.
         tag_numbers (bool):
         lower_case (bool):
         stop_words_list (bool):
