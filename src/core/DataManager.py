@@ -28,14 +28,14 @@ class DataManager(object):
         self.train['tokenized'] = self.train['comment_text'].apply(tokenize.word_tokenize)
         self.logger.info("Tokenizing all training documents took {}s".format(time.time() - st))
 
-        try:
-            if self.test:
-                self.logger.info("Train only mode is enabled, exiting function.")
-        except ValueError as e:
-                self.logger.info("Tokenizing test input")
-                st = time.time()
-                self.test['tokenized'] = self.test['comment_text'].apply(tokenize.word_tokenize)
-                self.logger.info("Tokenizing all test documents took {}s".format(time.time() - st))
+        if isinstance(self.test, pd.DataFrame):
+            self.logger.info("Tokenizing test input")
+            st = time.time()
+            self.test['tokenized'] = self.test['comment_text'].apply(tokenize.word_tokenize)
+            self.logger.info("Tokenizing all test documents took {}s".format(time.time() - st))
+        else:
+            self.logger.info("Train only mode is enabled, exiting function.")
+
 
     def _pad_sentences(self):
         self.train
