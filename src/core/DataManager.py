@@ -21,7 +21,7 @@ class DataManager(object):
         self.train = pd.read_csv(path + "/train.csv")
         self.test = False if train_only else pd.read_csv(path + "/train.csv")  # For some if checks down the road.
         self.train_id_dict = self.train[['id', 'comment_text']].set_index('id').to_dict()
-        self.test_id_dict = self.test[['id', 'comment_text']].set_index('id').to_dict()
+        self.test_id_dict = False if train_only else self.test[['id', 'comment_text']].set_index('id').to_dict()
         self.logger = logging_wrapper(logging_level, logging_path)
 
     def tokenize(self):

@@ -34,6 +34,15 @@ def replace_number(sentence, logger=None):  # Tested [Y]
 
 
 def combine_contractions(sentence, logger=None):
+    """
+    
+    Args:
+        sentence:
+        logger:
+
+    Returns:
+
+    """
     len_before = len(sentence)
     for index in range(len_before):
         if sentence[index] in ["n't", "'m", "'ll"]:
@@ -113,3 +122,4 @@ def padding(corpus, logger=None):
         i.extend(("<PAD>",) * (max_length - len(i)))
 
     return corpus
+
