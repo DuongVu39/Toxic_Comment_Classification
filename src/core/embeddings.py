@@ -40,8 +40,11 @@ def embed_to_wtv(corpus, epochs=5):
 
     """
     wtv = create_wtv(corpus, epochs=epochs)
-    result = corpus.apply(general_embed, args=(wtv,))
-    return result
+    word_vectors = wtv.wv
+    result = corpus.apply(general_embed, args=(word_vectors,))
+
+    del wtv  # Apparently saves memory?
+    return result, word_vectors
 
 def embed_to_ft():
     """"
