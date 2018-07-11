@@ -16,9 +16,12 @@ def general_embed(sentence, model):
 def create_wtv(corpus, epochs=5):
     """
 
+def create_wtv(corpus, epochs=5):
+    """
+
     Args:
-        corpus (list): List of all comments
-        epochs (int): Number of epoch
+        corpus:
+        epochs:
 
     Returns:
 
@@ -27,12 +30,13 @@ def create_wtv(corpus, epochs=5):
     wtv.train(corpus, total_examples=corpus.shape[0], epochs=epochs)
     return wtv
 
+
 def embed_to_wtv(corpus, epochs=5):
     """
 
     Args:
-        corpus (list): List of all comments
-        epochs (int): Number of epoch
+        corpus:
+        epochs:
 
     Returns:
 
@@ -42,6 +46,12 @@ def embed_to_wtv(corpus, epochs=5):
     return result
 
 def embed_to_ft():
+    """"
+
+
+
+
+    """
     pass
 
 
