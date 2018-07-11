@@ -35,7 +35,7 @@ def replace_number(sentence, logger=None):  # Tested [Y]
 
 def combine_contractions(sentence, logger=None):
     """
-    
+
     Args:
         sentence:
         logger:
