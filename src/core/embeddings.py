@@ -13,8 +13,6 @@ def general_embed(sentence, model):
     new_sentence = [model[i] for i in sentence]
     return new_sentence
 
-def create_wtv(corpus, epochs=5):
-    """
 
 def create_wtv(corpus, epochs=5):
     """
