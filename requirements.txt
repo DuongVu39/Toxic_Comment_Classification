@@ -6,4 +6,4 @@ numpy==1.14.5
 matplotlib==2.2.2
 missingno==0.4.0
 plotly==2.7.0
-nltk==3.3
+nltk==3.6.3
