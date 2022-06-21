@@ -2,7 +2,7 @@ keras==2.1.6
 sklearn
 pandas==0.22.0
 gensim
-numpy==1.14.5
+numpy==1.22.0
 matplotlib==2.2.2
 missingno==0.4.0
 plotly==2.7.0
